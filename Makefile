@@ -4,7 +4,7 @@ SHELL=/bin/bash -o pipefail
 asia: custom_files/asia-latest.osm.pbf
 	$(MAKE) build_tiles NAME=$@
 custom_files/asia-latest.osm.pbf: _dirs
-	wget -O custom_files/asia-latest.osm.pbf https://download.geofabrik.de/asia-latest.osm.pbf
+	wget -q -O custom_files/asia-latest.osm.pbf https://download.geofabrik.de/asia-latest.osm.pbf
 
 andorra: custom_files/andorra-latest.osm.pbf
 	$(MAKE) build_tiles NAME=$@
