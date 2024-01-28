@@ -9,7 +9,7 @@ custom_files/asia-latest.osm.pbf: _dirs
 andorra: custom_files/andorra-latest.osm.pbf
 	$(MAKE) build_tiles NAME=$@
 custom_files/andorra-latest.osm.pbf: _dirs
-	wget -O $@ https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+	wget -q -O $@ https://download.geofabrik.de/europe/andorra-latest.osm.pbf
 
 .PHONY: _dirs
 _dirs:
