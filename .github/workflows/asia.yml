@@ -1,6 +1,6 @@
-name: Andorra
+name: Asia
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   github:
@@ -10,4 +10,4 @@ jobs:
 
       - name: Build :latest
         if: success()
-        run: make andorra
+        run: make asia
