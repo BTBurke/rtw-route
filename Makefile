@@ -1,5 +1,6 @@
 NOW=$(date -u +%Y%m%d)
 SHELL=/bin/bash -o pipefail
+REGISTRY=us-central1-docker.pkg.dev/rtwrun/rtw-route
 
 asia: custom_files/asia-latest.osm.pbf
 	$(MAKE) build_tiles NAME=$@
@@ -20,6 +21,8 @@ _dirs:
 .PHONY: build_tiles
 build_tiles:
 	docker run --rm -v ${PWD}/custom_files:/custom_files -p 8002:8002 -e tileset_name=${NAME}_tiles --name valhalla -e serve_tiles=False -e build_admins=True -e build_time_zones=True -e force_rebuild=True ghcr.io/gis-ops/docker-valhalla/valhalla:latest
+	docker build -t ${NAME}-latest -t ${NAME}-${NOW} -t ${REGISTRY}/${NAME}-latest -t ${REGISTRY}/${NAME}-${NOW} .
+	docker push ${NAME}-latest --all-tags
 
 iso-country.json:
 	cat countries-110m.json | jq '[.objects.countries.geometries | .[] | select(.id != null) | {(.id): (.properties.name)} | select (. != null)]' > $@

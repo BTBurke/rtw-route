@@ -1,4 +1,4 @@
-name: Asia
+name: Andorra
 
 on: [workflow_dispatch]
 
@@ -23,4 +23,4 @@ jobs:
 
       - name: Build
         if: success()
-        run: make asia
+        run: make andorra
