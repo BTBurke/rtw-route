@@ -1,0 +1,26 @@
+name: Stans
+
+on: [workflow_dispatch]
+
+jobs:
+  github:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v1
+
+      - id: auth
+        name: Auth with Google Cloud
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Login to Artifact Registry
+        uses: docker/login-action@v3
+        with:
+          registry: us-central1-docker.pkg.dev
+          username: _json_key
+          password: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Build
+        if: success()
+        run: make stans
