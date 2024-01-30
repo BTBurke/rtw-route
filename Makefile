@@ -7,7 +7,7 @@ asia: prep
 	$(MAKE) build_tiles NAME=$@
 
 stans: prep
-	wget -P ./custom_files/ \
+	wget -q -P ./custom_files/ \
 	https://download.geofabrik.de/asia/kazakhstan-latest.osm.pbf \
 	https://download.geofabrik.de/asia/kyrgyzstan-latest.osm.pbf \
 	https://download.geofabrik.de/asia/uzbekistan-latest.osm.pbf \
