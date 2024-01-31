@@ -3,8 +3,9 @@ name: Asia
 on: [workflow_dispatch]
 
 jobs:
-  github:
+  build:
     runs-on: ubicloud-standard-16    
+    timeout-minutes: 840
     steps:
       - uses: actions/checkout@v1
 
